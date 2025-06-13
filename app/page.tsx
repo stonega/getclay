@@ -1,39 +1,17 @@
 'use client'
 
-import { useState } from 'react'
-import { ThemeToggle } from '@/components/theme-toggle'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Card, CardContent } from '@/components/ui/card'
 import { ClayLogo } from '@/components/clay-logo'
-import { Sparkles } from 'lucide-react'
+import { Discord } from '@/components/icons/discord'
 import ExcerptBook from '@/components/icons/excerpt-book'
 import ExcerptChat from '@/components/icons/excerpt-chat'
 import ExcerptNote from '@/components/icons/excerpt-note'
-import { Discord } from '@/components/icons/discord'
+import { JoinBetaForm } from '@/components/join-beta-form'
+import { ThemeToggle } from '@/components/theme-toggle'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import Image from 'next/image'
 
 export default function Page() {
-	const [email, setEmail] = useState('')
-	const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'duplicate'>('idle')
-
-	async function handleJoinBeta(e: React.FormEvent) {
-		e.preventDefault()
-		setStatus('loading')
-		const res = await fetch('/api/join-beta', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ email }),
-		})
-		if (res.ok) {
-			setStatus('success')
-			setEmail('')
-		} else if (res.status === 409) {
-			setStatus('duplicate')
-		} else {
-			setStatus('error')
-		}
-	}
-
 	return (
 		<div className='min-h-screen bg-background'>
 			{/* Header */}
@@ -47,10 +25,20 @@ export default function Page() {
 					<a href='#features' className='text-sm text-muted-foreground hover:text-foreground'>
 						Features
 					</a>
-					<a href='#about' className='text-sm text-muted-foreground hover:text-foreground'>
+					{/* <a href='#about' className='text-sm text-muted-foreground hover:text-foreground'>
 						About
-					</a>
-					<Button size='sm' className='rounded-lg'>
+					</a> */}
+					<Button
+						size='sm'
+						className='rounded-lg h-9'
+						onClick={() => {
+							const input = document.querySelector('input[type="email"]') as HTMLInputElement
+							if (input) {
+								input.focus()
+								input.select()
+							}
+						}}
+					>
 						Join Beta
 					</Button>
 				</nav>
@@ -70,100 +58,18 @@ export default function Page() {
 					Upload books, chat with AI about content, and track your reading progress. For free. Forever.
 				</p>
 
-				<form onSubmit={handleJoinBeta} className='flex flex-col sm:flex-row gap-3 max-w-sm mx-auto mb-4'>
-					<Input
-						type='email'
-						placeholder='Email address'
-						className='rounded-full border-primary'
-						value={email}
-						onChange={e => setEmail(e.target.value)}
-						required
-					/>
-					<Button className='rounded-full px-8' type='submit' disabled={status === 'loading'}>
-						{status === 'loading' ? 'Joining...' : 'Join Beta'}
-					</Button>
-					{status === 'success' && <div className="text-green-600 text-sm mt-2">Thank you for joining!</div>}
-					{status === 'duplicate' && <div className="text-yellow-600 text-sm mt-2">You already signed up.</div>}
-					{status === 'error' && <div className="text-red-600 text-sm mt-2">Something went wrong. Try again.</div>}
-				</form>
+				<JoinBetaForm variant='hero' />
 			</section>
 
 			{/* App Preview Section */}
 			<section className='px-6 py-20 max-w-6xl mx-auto'>
-				<div className='relative flex justify-center items-center gap-8'>
-					{/* Phone Mockup 1 */}
-					<div className='relative'>
-						<div className='w-64 h-[520px] bg-black rounded-[3rem] p-2 shadow-2xl'>
-							<div className='w-full h-full bg-white rounded-[2.5rem] overflow-hidden'>
-								<div className='p-6 h-full flex flex-col'>
-									<div className='flex items-center justify-between mb-6'>
-										<div className='w-6 h-6 bg-gray-200 rounded-full' />
-										<div className='text-sm font-medium'>My Library</div>
-										<div className='w-6 h-6 bg-gray-200 rounded-full' />
-									</div>
-
-									<div className='space-y-4 flex-1'>
-										<div className='bg-gray-50 rounded-2xl p-4'>
-											<div className='w-full h-32 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl mb-3' />
-											<div className='text-sm font-medium'>The Great Gatsby</div>
-											<div className='text-xs text-gray-500'>F. Scott Fitzgerald</div>
-										</div>
-
-										<div className='bg-gray-50 rounded-2xl p-4'>
-											<div className='w-full h-32 bg-gradient-to-br from-green-100 to-green-200 rounded-xl mb-3' />
-											<div className='text-sm font-medium'>1984</div>
-											<div className='text-xs text-gray-500'>George Orwell</div>
-										</div>
-									</div>
-
-									<Button className='w-full rounded-full mt-4'>Upload Book</Button>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					{/* Phone Mockup 2 */}
-					<div className='relative'>
-						<div className='w-64 h-[520px] bg-black rounded-[3rem] p-2 shadow-2xl'>
-							<div className='w-full h-full bg-white rounded-[2.5rem] overflow-hidden'>
-								<div className='p-6 h-full flex flex-col'>
-									<div className='flex items-center justify-between mb-6'>
-										<div className='w-6 h-6 bg-gray-200 rounded-full' />
-										<div className='text-sm font-medium'>AI Chat</div>
-										<div className='w-6 h-6 bg-gray-200 rounded-full' />
-									</div>
-
-									<div className='space-y-4 flex-1 overflow-hidden'>
-										<div className='bg-gray-100 rounded-2xl p-3 max-w-[80%]'>
-											<div className='text-sm'>What are the main themes in The Great Gatsby?</div>
-										</div>
-
-										<div className='bg-blue-500 text-white rounded-2xl p-3 max-w-[80%] ml-auto'>
-											<div className='text-sm'>
-												The main themes include the American Dream, social class, and the corruption of wealth...
-											</div>
-										</div>
-
-										<div className='bg-gray-100 rounded-2xl p-3 max-w-[80%]'>
-											<div className='text-sm'>Can you find quotes about this?</div>
-										</div>
-									</div>
-
-									<div className='flex items-center gap-2 mt-4'>
-										<Input placeholder='Ask about your book...' className='rounded-full text-sm' />
-										<Button size='sm' className='rounded-full'>
-											<Sparkles className='h-4 w-4' />
-										</Button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+				<div className='flex flex-row items-bottom justify-center gap-4'>
+					<Image src='/mockup.png' alt='Clay App Preview' width={414} height={851} className='rounded-lg' />
 				</div>
 			</section>
 
 			{/* Features Text Section */}
-			<section id='features' className='px-6 py-20 max-w-4xl mx-auto'>
+			{/* <section id='features' className='px-6 py-20 max-w-4xl mx-auto'>
 				<div className='space-y-12 text-left'>
 					<div>
 						<h2 className='text-4xl font-bold mb-6'>
@@ -194,10 +100,10 @@ export default function Page() {
 						<p className='text-2xl leading-relaxed font-medium'>For free. Forever.</p>
 					</div>
 				</div>
-			</section>
+			</section> */}
 
 			{/* Features Grid Section */}
-			<section className='px-6 py-20 max-w-6xl mx-auto'>
+			<section id='features' className='px-6 py-20 max-w-6xl mx-auto'>
 				<div className='text-center mb-16'>
 					<h2 className='text-4xl font-bold'>
 						Start reading smarter
@@ -269,12 +175,7 @@ export default function Page() {
 						<p className='text-lg opacity-80 mb-8'>
 							Join our beta and help us create the future of AI-enhanced reading.
 						</p>
-						<div className='flex flex-col sm:flex-row gap-4 justify-center'>
-							<div className='flex flex-col sm:flex-row gap-3 max-w-sm mx-auto mb-4'>
-								<Input type='email' placeholder='Email address' className='rounded-full' />
-								<Button className='rounded-full px-8'>Join Beta</Button>
-							</div>
-						</div>
+						<JoinBetaForm variant='cta' />
 					</div>
 
 					{/* Decorative elements */}
@@ -294,12 +195,12 @@ export default function Page() {
 						{/* <ThemeToggle /> */}
 						<div className='flex gap-2'>
 							<a
-								href="https://discord.gg/sHAeeBJP"
-								className="text-muted-foreground hover:text-foreground"
-								target="_blank"
-								rel="noopener noreferrer"
+								href='https://discord.gg/sHAeeBJP'
+								className='text-muted-foreground hover:text-foreground'
+								target='_blank'
+								rel='noopener noreferrer'
 							>
-								<Discord className="h-5 w-5" />
+								<Discord className='h-5 w-5' />
 							</a>
 						</div>
 					</div>
