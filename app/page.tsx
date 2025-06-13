@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -7,8 +10,30 @@ import { Sparkles } from 'lucide-react'
 import ExcerptBook from '@/components/icons/excerpt-book'
 import ExcerptChat from '@/components/icons/excerpt-chat'
 import ExcerptNote from '@/components/icons/excerpt-note'
+import { Discord } from '@/components/icons/discord'
 
 export default function Page() {
+	const [email, setEmail] = useState('')
+	const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'duplicate'>('idle')
+
+	async function handleJoinBeta(e: React.FormEvent) {
+		e.preventDefault()
+		setStatus('loading')
+		const res = await fetch('/api/join-beta', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ email }),
+		})
+		if (res.ok) {
+			setStatus('success')
+			setEmail('')
+		} else if (res.status === 409) {
+			setStatus('duplicate')
+		} else {
+			setStatus('error')
+		}
+	}
+
 	return (
 		<div className='min-h-screen bg-background'>
 			{/* Header */}
@@ -45,10 +70,22 @@ export default function Page() {
 					Upload books, chat with AI about content, and track your reading progress. For free. Forever.
 				</p>
 
-				<div className='flex flex-col sm:flex-row gap-3 max-w-sm mx-auto mb-4'>
-					<Input type='email' placeholder='Email address' className='rounded-full' />
-					<Button className='rounded-full px-8'>Join Beta</Button>
-				</div>
+				<form onSubmit={handleJoinBeta} className='flex flex-col sm:flex-row gap-3 max-w-sm mx-auto mb-4'>
+					<Input
+						type='email'
+						placeholder='Email address'
+						className='rounded-full border-primary'
+						value={email}
+						onChange={e => setEmail(e.target.value)}
+						required
+					/>
+					<Button className='rounded-full px-8' type='submit' disabled={status === 'loading'}>
+						{status === 'loading' ? 'Joining...' : 'Join Beta'}
+					</Button>
+					{status === 'success' && <div className="text-green-600 text-sm mt-2">Thank you for joining!</div>}
+					{status === 'duplicate' && <div className="text-yellow-600 text-sm mt-2">You already signed up.</div>}
+					{status === 'error' && <div className="text-red-600 text-sm mt-2">Something went wrong. Try again.</div>}
+				</form>
 			</section>
 
 			{/* App Preview Section */}
@@ -255,11 +292,16 @@ export default function Page() {
 					</div>
 					<div className='flex items-center gap-6'>
 						<ThemeToggle />
-						{/* <div className='flex gap-2'>
-							<div className='w-2 h-2 bg-gray-400 rounded-full' />
-							<div className='w-2 h-2 bg-gray-600 rounded-full' />
-							<div className='w-2 h-2 bg-gray-400 rounded-full' />
-						</div> */}
+						<div className='flex gap-2'>
+							<a
+								href="https://discord.gg/sHAeeBJP"
+								className="text-muted-foreground hover:text-foreground"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<Discord className="h-5 w-5" />
+							</a>
+						</div>
 					</div>
 				</div>
 			</footer>

@@ -5,3 +5,7 @@ compatibility_flags = ["nodejs_compat"]
 [assets]
 directory = ".open-next/assets"
 binding = "ASSETS"
+[[d1_databases]]
+binding = "DB"
+database_name = "getclay_beta"
+database_id = "f054140b-bc15-4df6-b181-0cb2894d3c71"

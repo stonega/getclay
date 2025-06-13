@@ -11,9 +11,6 @@ export const metadata: Metadata = {
 	title: 'Clay',
 	description: 'Read with Clay',
 	generator: 'Clay',
-	icons: {
-		icon: '/favicon.ico',
-	},
 }
 
 export default function RootLayout({
