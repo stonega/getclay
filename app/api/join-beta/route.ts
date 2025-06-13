@@ -1,3 +1,5 @@
+import type { D1Database } from '@cloudflare/workers-types'
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
@@ -8,7 +10,7 @@ export async function POST(request: NextRequest) {
   }
 
   // @ts-ignore - D1 binding is available in Cloudflare Workers
-  const db = process.env.DB as D1Database
+  const db = getCloudflareContext().env.DB as D1Database
 
   try {
     // Insert the email into the beta_signups table

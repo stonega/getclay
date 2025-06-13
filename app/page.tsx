@@ -291,7 +291,7 @@ export default function Page() {
 						<span className='text-xl font-bold playfair'>Clay</span>
 					</div>
 					<div className='flex items-center gap-6'>
-						<ThemeToggle />
+						{/* <ThemeToggle /> */}
 						<div className='flex gap-2'>
 							<a
 								href="https://discord.gg/sHAeeBJP"
