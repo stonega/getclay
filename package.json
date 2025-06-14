@@ -4,7 +4,8 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev --port 3005",
-		"build": "opennextjs-cloudflare build",
+		"build": "next build",
+		"build:cloudflare": "opennextjs-cloudflare build",
 		"start": "next start",
 		"lint": "next lint",
 		"lint:fix": "biome check --write .",
