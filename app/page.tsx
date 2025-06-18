@@ -8,6 +8,7 @@ import ExcerptNote from '@/components/icons/excerpt-note'
 import { JoinBetaForm } from '@/components/join-beta-form'
 // import { ThemeToggle } from '@/components/theme-toggle'
 import { Button } from '@/components/ui/button'
+import {Carousel, ExcerptCard} from '@/components/excerpt-carousel'
 import { Card, CardContent } from '@/components/ui/card'
 import Image from 'next/image'
 
@@ -170,6 +171,15 @@ export default function Page() {
 					</Card>
 
 				</div>
+			</section>
+			<section className='px-6 py-20 mx-auto flex justify-center'>
+				<Carousel items={[
+					<ExcerptCard key='excerpt-1' index={0} backgroundImage='/excerpt-1.png' />, 
+					<ExcerptCard key='excerpt-2' index={1} backgroundImage='/excerpt-1.png' />, 
+					<ExcerptCard key='excerpt-3' index={2} backgroundImage='/excerpt-1.png' />, 
+					<ExcerptCard key='excerpt-4' index={3} backgroundImage='/excerpt-1.png' />, 
+					<ExcerptCard key='excerpt-5' index={4} backgroundImage='/excerpt-1.png' />, 
+					]} />
 			</section>
 
 			{/* Final CTA Section */}
