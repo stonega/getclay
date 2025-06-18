@@ -111,7 +111,7 @@ export default function Page() {
 			<section id='features' className='px-6 py-20 max-w-6xl mx-auto'>
 				<div className='text-center mb-16'>
 					<h2 className='text-4xl font-bold'>
-						Start reading smarter
+						Enjoy reading
 						<br />
 						with Clay
 					</h2>
@@ -172,7 +172,14 @@ export default function Page() {
 
 				</div>
 			</section>
-			<section className='px-6 py-20 mx-auto flex justify-center'>
+			<section className='px-6 py-20 max-w-6xl mx-auto'>
+				<div className='text-center mb-16'>
+					<h2 className='text-4xl font-bold'>
+						Beautiful cards created
+						<br />
+						with Clay
+					</h2>
+				</div>
 				<Carousel items={[
 					<ExcerptCard key='excerpt-1' index={0} backgroundImage='/excerpt-1.png' />, 
 					<ExcerptCard key='excerpt-2' index={1} backgroundImage='/excerpt-1.png' />, 

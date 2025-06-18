@@ -53,6 +53,8 @@ const Carousel = ({items, initialScroll = 0}: iCarouselProps) => {
 	const carouselRef = React.useRef<HTMLDivElement>(null);
 	const [canScrollLeft, setCanScrollLeft] = React.useState(false);
 	const [canScrollRight, setCanScrollRight] = React.useState(true);
+	const [isHovering, setIsHovering] = useState(false);
+	const animationFrameRef = useRef<number>(0);
 
 	const checkScrollability = useCallback(() => {
 		if (carouselRef.current) {
@@ -61,6 +63,35 @@ const Carousel = ({items, initialScroll = 0}: iCarouselProps) => {
 			setCanScrollRight(scrollLeft < scrollWidth - clientWidth);
 		}
 	}, []);
+
+	useEffect(() => {
+		const autoScroll = () => {
+			if (!carouselRef.current || isHovering) {
+				animationFrameRef.current = requestAnimationFrame(autoScroll);
+				return;
+			}
+
+			const carousel = carouselRef.current;
+			const {scrollLeft, scrollWidth} = carousel;
+			const halfScrollWidth = scrollWidth / 2;
+
+			if (scrollLeft >= halfScrollWidth) {
+				carousel.scrollLeft = scrollLeft - halfScrollWidth;
+			} else {
+				carousel.scrollLeft += 0.5;
+			}
+
+			animationFrameRef.current = requestAnimationFrame(autoScroll);
+		};
+
+		animationFrameRef.current = requestAnimationFrame(autoScroll);
+
+		return () => {
+			if (animationFrameRef.current) {
+				cancelAnimationFrame(animationFrameRef.current);
+			}
+		};
+	}, [isHovering]);
 
 	const handleScrollLeft = () => {
 		if (carouselRef.current) {
@@ -98,7 +129,11 @@ const Carousel = ({items, initialScroll = 0}: iCarouselProps) => {
 	}, [initialScroll, checkScrollability]);
 
 	return (
-		<div className="relative w-full mt-10">
+		<div
+			className="relative w-full mt-10"
+			onMouseEnter={() => setIsHovering(true)}
+			onMouseLeave={() => setIsHovering(false)}
+		>
 			<div
 				className="flex w-full overflow-x-scroll overscroll-x-auto scroll-smooth [scrollbar-width:none] py-5"
 				ref={carouselRef}
@@ -115,7 +150,7 @@ const Carousel = ({items, initialScroll = 0}: iCarouselProps) => {
 						"max-w-5xl mx-auto",
 					)}
 				>
-					{items.map((item, index) => {
+					{[...items, ...items].map((item, index) => {
 						return (
 							<motion.div
 								initial={{opacity: 0, y: 20}}
@@ -128,37 +163,18 @@ const Carousel = ({items, initialScroll = 0}: iCarouselProps) => {
 										ease: "easeOut",
 									},
 								}}
-								key={`card-${// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-index}`}
-								className="last:pr-[5%] md:last:pr-[33%] rounded-3xl"
+								key={`card-${index % items.length}`}
+								className="rounded-3xl"
 							>
 								{React.cloneElement(item, {
 									onCardClose: () => {
-										return handleCardClose(index);
+										return handleCardClose(index % items.length);
 									},
 								})}
 							</motion.div>
 						);
 					})}
 				</div>
-			</div>
-			<div className="flex justify-center gap-2 mt-4">
-				<button
-					className="relative z-40 h-10 w-10 rounded-full bg-[#4b3f33] flex items-center justify-center disabled:opacity-50 hover:bg-[#4b3f33]/80 transition-colors duration-200"
-					type="button"
-					onClick={handleScrollLeft}
-					disabled={!canScrollLeft}
-				>
-					<ArrowLeft className="h-6 w-6 text-[#f2f0eb]" />
-				</button>
-				<button
-					className="relative z-40 h-10 w-10 rounded-full bg-[#4b3f33] flex items-center justify-center disabled:opacity-50 hover:bg-[#4b3f33]/80 transition-colors duration-200"
-					type="button"
-					onClick={handleScrollRight}
-					disabled={!canScrollRight}
-				>
-					<ArrowRight className="h-6 w-6 text-[#f2f0eb]" />
-				</button>
 			</div>
 		</div>
 	);
