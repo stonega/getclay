@@ -218,7 +218,7 @@ export default function Page() {
 						{/* <ThemeToggle /> */}
 						<div className='flex gap-2'>
 							<a
-								href='https://discord.gg/TEU7DF6cBN'
+								href='https://discord.gg/rsXu3we6zs'
 								className='text-muted-foreground hover:text-foreground'
 								target='_blank'
 								rel='noopener noreferrer'
