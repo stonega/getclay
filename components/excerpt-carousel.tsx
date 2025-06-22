@@ -209,7 +209,7 @@ const ExcerptCard = ({
 				}}
 			>
 				<div
-					className={`${index % 2 === 0 ? "rotate-0" : "-rotate-0"} rounded-3xl  h-[500px] md:h-[550px] w-80 md:w-96 overflow-hidden flex flex-col items-center justify-center relative z-10 shadow-md`}
+					className={`${index % 2 === 0 ? "rotate-0" : "-rotate-0"} rounded-3xl  h-[500px] md:h-[550px] aspect-[3/4] overflow-hidden flex flex-col items-center justify-center relative z-10 shadow-md`}
 				>
 					<div className="absolute" style={{inset: "-1px 0 0"}}>
 						<div className="absolute inset-0">

@@ -127,7 +127,7 @@ export default function Page() {
 					>
 						<CardContent className='p-0'>
 							<div className='flex items-center justify-center mx-auto mb-6'>
-								<ExcerptBook className='text-foreground' />
+								<ExcerptBook className='text-foreground md:size-auto size-32' />
 							</div>
 							<h3 className='text-xl font-semibold mb-4 playfair text-foreground'>Effortless Book Entry</h3>
 							<p className='text-foreground/80'>Customize book cover images to personalize your digital bookshelf.</p>
@@ -143,7 +143,7 @@ export default function Page() {
 					>
 						<CardContent className='p-0'>
 							<div className='flex items-center justify-center mx-auto mb-6'>
-								<ExcerptNote className='text-foreground' />
+								<ExcerptNote className='text-foreground md:size-auto size-32' />
 							</div>
 							<h3 className='text-xl font-semibold mb-4 playfair text-foreground'>Add notes and annotations</h3>
 							<p className='text-foreground/80'>
@@ -161,7 +161,7 @@ export default function Page() {
 					>
 						<CardContent className='p-0'>
 							<div className='flex items-center justify-center mx-auto mb-6'>
-								<ExcerptChat className='text-foreground' />
+								<ExcerptChat className='text-foreground md:size-auto size-32' />
 							</div>
 							<h3 className='text-xl font-semibold mb-4 playfair text-foreground'>Chat with AI</h3>
 							<p className='text-foreground/80'>
@@ -182,10 +182,11 @@ export default function Page() {
 				</div>
 				<Carousel items={[
 					<ExcerptCard key='excerpt-1' index={0} backgroundImage='/excerpt-1.png' />, 
-					<ExcerptCard key='excerpt-2' index={1} backgroundImage='/excerpt-1.png' />, 
-					<ExcerptCard key='excerpt-3' index={2} backgroundImage='/excerpt-1.png' />, 
-					<ExcerptCard key='excerpt-4' index={3} backgroundImage='/excerpt-1.png' />, 
-					<ExcerptCard key='excerpt-5' index={4} backgroundImage='/excerpt-1.png' />, 
+					<ExcerptCard key='excerpt-2' index={1} backgroundImage='/excerpt-2.png' />, 
+					<ExcerptCard key='excerpt-3' index={2} backgroundImage='/excerpt-3.png' />, 
+					<ExcerptCard key='excerpt-4' index={3} backgroundImage='/excerpt-4.png' />, 
+					<ExcerptCard key='excerpt-5' index={4} backgroundImage='/excerpt-5.png' />, 
+					<ExcerptCard key='excerpt-6' index={5} backgroundImage='/excerpt-6.png' />, 
 					]} />
 			</section>
 
