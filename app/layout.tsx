@@ -11,6 +11,9 @@ export const metadata: Metadata = {
 	title: 'Clay',
 	description: 'Read with Clay',
 	generator: 'Clay',
+	openGraph: {
+		images: ['/og.png'],
+	},
 }
 
 export default function RootLayout({
