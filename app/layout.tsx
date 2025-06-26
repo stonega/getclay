@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en' suppressHydrationWarning>
-			<body className={`${inter.className} ${playfair.variable}`}>
+			<body className={`${inter.className} ${playfair.variable}`} suppressHydrationWarning>
 				<ThemeProvider attribute='class' defaultTheme='light' disableTransitionOnChange>
 					{children}
 				</ThemeProvider>
