@@ -2,8 +2,6 @@ import { type NextRequest, NextResponse } from "next/server";
 import type { D1Database } from '@cloudflare/workers-types'
 import { cookies } from "next/headers";
 
-export const runtime = "edge";
-
 type Env = {
   DB: D1Database;
 };
