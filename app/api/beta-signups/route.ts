@@ -1,10 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import type { D1Database } from '@cloudflare/workers-types'
+import { getCloudflareContext } from '@opennextjs/cloudflare'
 import { cookies } from "next/headers";
-
-type Env = {
-  DB: D1Database;
-};
 
 export async function GET(req: NextRequest) {
   try {
@@ -15,8 +12,9 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
-    const { DB } = process.env as unknown as Env;
-    const { results } = await DB.prepare("SELECT * FROM beta_signups").all();
+	  // @ts-ignore - D1 binding is available in Cloudflare Workers
+	  const db = getCloudflareContext().env.DB as D1Database
+    const { results } = await db.prepare("SELECT * FROM beta_signups").all();
     return NextResponse.json(results);
   } catch (e) {
     console.error(e);
