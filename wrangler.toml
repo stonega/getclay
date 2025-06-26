@@ -17,5 +17,3 @@ database_id = "f054140b-bc15-4df6-b181-0cb2894d3c71"
 [observability.logs]
 enabled = true
 
-[vars]
-ADMIN_PASSWORD="clayyyyy"
