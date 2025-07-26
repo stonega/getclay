@@ -1,9 +1,9 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ClayLogo } from '@/components/clay-logo'
 import { Discord } from '@/components/icons/discord'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function JoinTestflightPage() {
 	return (
@@ -72,15 +72,10 @@ export default function JoinTestflightPage() {
 							<div className='flex flex-col items-start gap-4'>
 								<p className='text-muted-foreground mb-2'>
 									Once TestFlight is installed, tap the link below on your iPhone. This will open the Clay beta
-									invitation directly in the TestFlight app. You may see a screen asking you to accept the
-									invitation.
+									invitation directly in the TestFlight app. You may see a screen asking you to accept the invitation.
 								</p>
 								<Button asChild>
-									<a
-										href='https://testflight.apple.com/join/eKkPg71Q'
-										target='_blank'
-										rel='noopener noreferrer'
-									>
+									<a href='https://testflight.apple.com/join/eKkPg71Q' target='_blank' rel='noopener noreferrer'>
 										Open Invitation
 									</a>
 								</Button>
@@ -101,9 +96,9 @@ export default function JoinTestflightPage() {
 							<Image src='/testflight.webp' alt='TestFlight' width={100} height={100} />
 							<div className='flex flex-col items-start'>
 								<p className='text-muted-foreground'>
-									In TestFlight, tap "Accept" and then "Install" to download the Clay beta app. Once installed,
-									you can find the Clay app on your Home Screen. TestFlight will send you a notification whenever
-									a new update is available to test.
+									In TestFlight, tap "Accept" and then "Install" to download the Clay beta app. Once installed, you can
+									find the Clay app on your Home Screen. TestFlight will send you a notification whenever a new update
+									is available to test.
 								</p>
 							</div>
 						</CardContent>

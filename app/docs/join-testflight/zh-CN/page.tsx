@@ -1,9 +1,9 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ClayLogo } from '@/components/clay-logo'
 import { Discord } from '@/components/icons/discord'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function JoinTestflightPage() {
 	return (
@@ -23,9 +23,7 @@ export default function JoinTestflightPage() {
 						<br />
 						加入 Clay Beta
 					</h1>
-					<p className='text-lg text-muted-foreground mb-8 max-w-md mx-auto'>
-						请按照以下步骤开始使用 Clay iOS 应用。
-					</p>
+					<p className='text-lg text-muted-foreground mb-8 max-w-md mx-auto'>请按照以下步骤开始使用 Clay iOS 应用。</p>
 				</div>
 
 				<div className='space-y-8'>
@@ -71,16 +69,11 @@ export default function JoinTestflightPage() {
 							<Image src='/safari.svg' alt='Safari 浏览器' width={100} height={100} />
 							<div className='flex flex-col items-start gap-4'>
 								<p className='text-muted-foreground mb-2'>
-									安装 TestFlight 后，请在您的 iPhone
-									上点击下方的链接。这将在TestFlight应用中直接打开Clay
+									安装 TestFlight 后，请在您的 iPhone 上点击下方的链接。这将在TestFlight应用中直接打开Clay
 									Beta的邀请。您可能会看到一个要求您接受邀请的界面。
 								</p>
 								<Button asChild>
-									<a
-										href='https://testflight.apple.com/join/eKkPg71Q'
-										target='_blank'
-										rel='noopener noreferrer'
-									>
+									<a href='https://testflight.apple.com/join/eKkPg71Q' target='_blank' rel='noopener noreferrer'>
 										打开邀请
 									</a>
 								</Button>
@@ -101,9 +94,8 @@ export default function JoinTestflightPage() {
 							<Image src='/testflight.webp' alt='TestFlight 应用' width={100} height={100} />
 							<div className='flex flex-col items-start'>
 								<p className='text-muted-foreground'>
-									在 TestFlight 中，点击"接受"，然后点击"安装"以下载 Clay Beta
-									应用。安装后，您就可以在主屏幕上找到 Clay 应用了。每当有新版本可供测试时，TestFlight
-									都会向您发送通知。
+									在 TestFlight 中，点击"接受"，然后点击"安装"以下载 Clay Beta 应用。安装后，您就可以在主屏幕上找到 Clay
+									应用了。每当有新版本可供测试时，TestFlight 都会向您发送通知。
 								</p>
 							</div>
 						</CardContent>
