@@ -253,11 +253,16 @@ export default function Page() {
 
 			{/* Footer */}
 			<footer className='px-6 py-12 border-t'>
-				<div className='max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4'>
+				<div className='max-w-6xl mx-auto flex flex-col-reverse md:flex-row justify-between items-center gap-4'>
 					<div className='flex items-center gap-2'>
 						<ClayLogo className='h-6 w-6' />
 						<span className='text-xl font-bold'>Clay</span>
 					</div>
+          <div className="flex flex-row space-x-2 items-center">
+            <a href="https://clayread.com/privacy">Privacy</a>
+            <div className="size-1 bg-black rounded-full"></div>
+            <a href="https://clayread.com/terms">Service Terms</a>
+          </div>
 					<div className='flex items-center gap-6'>
 						{/* <ThemeToggle /> */}
 						<div className='flex gap-4'>
