@@ -8,9 +8,10 @@ const inter = Inter({ subsets: ['latin'] })
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' })
 
 export const metadata: Metadata = {
-	title: 'Clay',
-	description: 'Read with Clay',
+	title: 'Clay Read',
+	description: 'Dedicated app for physical book lovers',
 	generator: 'Clay',
+  metadataBase: new URL('https://clayread.com'),
 	openGraph: {
 		images: ['/og.png'],
 	},
