@@ -54,9 +54,9 @@ export default function Page() {
 			{/* Hero Section */}
 			<section className='px-6 py-20 text-center max-w-6xl mx-auto'>
 				<h1 className='text-5xl md:text-6xl font-bold mb-6 leading-tight'>
-					The Dedicated App
+					Dedicated App
 					<br />
-					for Physical Book Readers
+					for Physical Book Lovers
 				</h1>
 				<p className='text-lg text-muted-foreground mb-8 max-w-md mx-auto'>
 					Clay helps you transform your reading habits into a seamless and enjoyable experience.
